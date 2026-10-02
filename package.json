@@ -1,0 +1,36 @@
+{
+  "name": "taskflow-api",
+  "version": "1.0.0",
+  "description": "JSON-backed REST API for task and project management",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "express",
+    "rest-api",
+    "task-management",
+    "nodejs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iil-0/taskflow-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iil-0/taskflow-api/issues"
+  },
+  "homepage": "https://github.com/iil-0/taskflow-api#readme",
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
