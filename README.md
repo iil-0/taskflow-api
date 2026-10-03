@@ -11,7 +11,27 @@ TaskFlow is a task management API built with Node.js and Express.
 - Consistent JSON responses for unknown routes and request errors
 - Automated tests for the server foundation
 
-Task storage and task management endpoints will be added in subsequent changes.
+## Additional Capabilities
+
+- **Task model and validation:** Reusable task field rules and request validation, ready for the task routes.
+
+## Task Input Rules
+
+The task model defines the accepted fields in one place. The validation middleware checks incoming data before later task operations use it.
+
+| Field | Rule |
+| --- | --- |
+| `title` | Required, non-empty string |
+| `description` | Required, non-empty string |
+| `priority` | Required: `low`, `medium` or `high` |
+| `assignee` | Required, non-empty string |
+| `status` | Optional: `pending`, `in-progress` or `completed` |
+
+Leading and trailing whitespace is removed from the four required fields. Empty strings, incorrect types, unknown fields, and server-managed fields such as `id` and timestamps are rejected with a JSON `400` response.
+
+Task IDs must be positive safe integers. The ID validator converts a valid URL parameter such as `"12"` into the number `12`.
+
+These modules are ready for integration; public task endpoints and persistent storage are not connected in this version. The available endpoint is still `GET /health`.
 
 ## Requirements
 
@@ -67,10 +87,12 @@ An unknown URL returns `404` with a JSON error. Malformed JSON returns `400`, ov
 ```text
 src/
   app.js
+  taskModel.js
   middleware/
     logger.js
     notFound.js
     errorHandler.js
+    taskValidation.js
 test/
   server.test.js
 ```
