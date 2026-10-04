@@ -15,6 +15,7 @@ TaskFlow is a task management API built with Node.js and Express.
 
 - **Task model and validation:** Reusable task field rules and request validation, ready for the task routes.
 - **Persistent task storage:** Task storage operations with unique active IDs, atomic writes and corruption checks.
+- **Task CRUD endpoints:** Create, list, read, update and delete tasks through HTTP using the model and storage layers.
 
 ## Task Input Rules
 
@@ -42,8 +43,6 @@ Task IDs must be positive safe integers. The ID validator converts a valid URL p
 - New tasks receive the largest existing ID plus one, ISO timestamps, and a default status of `pending`. A deleted highest ID may be reused later.
 - Updates preserve the creation timestamp and refresh the modification timestamp. Deleted tasks are removed from the file.
 - Corrupt JSON, duplicate IDs, or records that do not match the task model produce errors; existing data is not silently reset.
-
-The storage service is ready for the next integration step. Task routes are not connected in this version; `GET /health` remains the available endpoint. The local data file is excluded from Git.
 
 ## Requirements
 
@@ -118,3 +117,7 @@ npm test
 ```
 
 Tests start an HTTP server on an available local port and check health responses, request logging, unknown routes, malformed JSON and request size limits.
+
+## Task Endpoints
+
+`POST /tasks`, `GET /tasks`, `GET /tasks/:id`, `PUT /tasks/:id` and `DELETE /tasks/:id` are available. POST and PUT require `title`, `description`, `priority` and `assignee`; `status` is optional.
