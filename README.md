@@ -19,6 +19,7 @@ TaskFlow is a task management API built with Node.js and Express.
 - **Filtering, pagination and sorting:** Validated status and priority filters, page metadata and deterministic sorting.
 - **Search and assignee lookup:** Case-insensitive keyword search and assignee endpoints that compose with list options.
 - **Task reports:** Completed, pending and summary reports using the same task storage.
+- **Sample data:** A demo dataset and a command that protects existing records unless explicitly forced.
 
 ## Task Input Rules
 
@@ -128,3 +129,5 @@ Tests start an HTTP server on an available local port and check health responses
 Use `GET /tasks/search?keyword=backend` to search and `GET /tasks/assignee/:assignee` to list an employee's tasks.
 
 Reports: `GET /reports/completed`, `GET /reports/pending`, and `GET /reports/summary`.
+
+Run `npm run seed` to load sample tasks. Existing records are preserved unless `--force` is supplied.
