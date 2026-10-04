@@ -8,6 +8,8 @@ module.exports = service => {
   const controller = createTaskController(service);
   router.post('/', taskValidation, controller.create);
   router.get('/', taskQueryValidation(), controller.list);
+  router.get('/search', taskQueryValidation({ requireKeyword: true }), controller.list);
+  router.get('/assignee/:assignee', taskQueryValidation(), controller.list);
   router.get('/:id', validateTaskId, controller.detail);
   router.put('/:id', validateTaskId, taskValidation, controller.update);
   router.delete('/:id', validateTaskId, controller.remove);

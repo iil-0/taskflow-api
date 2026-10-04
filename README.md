@@ -17,6 +17,7 @@ TaskFlow is a task management API built with Node.js and Express.
 - **Persistent task storage:** Task storage operations with unique active IDs, atomic writes and corruption checks.
 - **Task CRUD endpoints:** Create, list, read, update and delete tasks through HTTP using the model and storage layers.
 - **Filtering, pagination and sorting:** Validated status and priority filters, page metadata and deterministic sorting.
+- **Search and assignee lookup:** Case-insensitive keyword search and assignee endpoints that compose with list options.
 
 ## Task Input Rules
 
@@ -122,3 +123,5 @@ Tests start an HTTP server on an available local port and check health responses
 ## Task Endpoints
 
 `POST /tasks`, `GET /tasks`, `GET /tasks/:id`, `PUT /tasks/:id` and `DELETE /tasks/:id` are available. POST and PUT require `title`, `description`, `priority` and `assignee`; `status` is optional.
+
+Use `GET /tasks/search?keyword=backend` to search and `GET /tasks/assignee/:assignee` to list an employee's tasks.
