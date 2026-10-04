@@ -20,6 +20,7 @@ TaskFlow is a task management API built with Node.js and Express.
 - **Search and assignee lookup:** Case-insensitive keyword search and assignee endpoints that compose with list options.
 - **Task reports:** Completed, pending and summary reports using the same task storage.
 - **Sample data:** A demo dataset and a command that protects existing records unless explicitly forced.
+- **Integration tests and CI:** End-to-end coverage for all implemented features and CI on Linux and Windows.
 
 ## Task Input Rules
 
