@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('node:path');
 const createTaskService = require('./services/taskService');
 const taskRoutes = require('./routes/taskRoutes');
+const reportRoutes = require('./routes/reportRoutes');
 const logger = require('./middleware/logger');
 const notFound = require('./middleware/notFound');
 const errorHandler = require('./middleware/errorHandler');
@@ -15,6 +16,7 @@ function createApp({ dataFile } = {}) {
   app.use(express.json({ limit: '100kb' }));
   app.get('/health', (req, res) => res.json({ success: true, data: { status: 'ok' } }));
   app.use('/tasks', taskRoutes(service));
+  app.use('/reports', reportRoutes(service));
   app.use(notFound);
   app.use(errorHandler);
   return app;
