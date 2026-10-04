@@ -14,6 +14,7 @@ TaskFlow is a task management API built with Node.js and Express.
 ## Additional Capabilities
 
 - **Task model and validation:** Reusable task field rules and request validation, ready for the task routes.
+- **Persistent task storage:** Task storage operations with unique active IDs, atomic writes and corruption checks.
 
 ## Task Input Rules
 
@@ -31,7 +32,18 @@ Leading and trailing whitespace is removed from the four required fields. Empty 
 
 Task IDs must be positive safe integers. The ID validator converts a valid URL parameter such as `"12"` into the number `12`.
 
-These modules are ready for integration; public task endpoints and persistent storage are not connected in this version. The available endpoint is still `GET /health`.
+## Task Storage
+
+`src/services/taskService.js` provides `getAllTasks()`, `getTaskById(id)`, `createTask(taskData)`, `updateTask(id, taskData)` and `deleteTask(id)`.
+
+- Tasks are stored as UTF-8 JSON in `src/data/tasks.json`. Missing directories and the file are created automatically on the first storage operation.
+- File operations are processed in sequence within one service instance to prevent concurrent requests from overwriting each other's changes. Use one service instance per data file in a single server process.
+- Changes are written to a temporary file in the same directory before replacing the data file. The temporary file is cleaned up after the operation.
+- New tasks receive the largest existing ID plus one, ISO timestamps, and a default status of `pending`. A deleted highest ID may be reused later.
+- Updates preserve the creation timestamp and refresh the modification timestamp. Deleted tasks are removed from the file.
+- Corrupt JSON, duplicate IDs, or records that do not match the task model produce errors; existing data is not silently reset.
+
+The storage service is ready for the next integration step. Task routes are not connected in this version; `GET /health` remains the available endpoint. The local data file is excluded from Git.
 
 ## Requirements
 
@@ -88,6 +100,8 @@ An unknown URL returns `404` with a JSON error. Malformed JSON returns `400`, ov
 src/
   app.js
   taskModel.js
+  services/
+    taskService.js
   middleware/
     logger.js
     notFound.js
