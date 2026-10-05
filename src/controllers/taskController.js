@@ -1,3 +1,5 @@
+const listTasks = require('../services/taskListing');
+
 function createTaskController(service) {
   const missing = res => res.status(404).json({ success: false, error: 'Task not found' });
   return {
@@ -6,7 +8,7 @@ function createTaskController(service) {
       res.status(201).location(`/tasks/${task.id}`).json({ success: true, data: task });
     },
     list: async (req, res) => {
-      res.json({ success: true, data: await service.getAllTasks() });
+      res.json({ success: true, ...listTasks(await service.getAllTasks(), req.taskQuery) });
     },
     detail: async (req, res) => {
       const task = await service.getTaskById(req.taskId);

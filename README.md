@@ -16,6 +16,7 @@ TaskFlow is a task management API built with Node.js and Express.
 - **Task model and validation:** Reusable task field rules and request validation, ready for the task routes.
 - **Persistent task storage:** Task storage operations with unique active IDs, atomic writes and corruption checks.
 - **Task CRUD endpoints:** Create, list, read, update and delete tasks through HTTP using the model and storage layers.
+- **Filtering, pagination and sorting:** Validated status and priority filters, page metadata and deterministic sorting.
 
 ## Task Input Rules
 
