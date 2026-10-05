@@ -1,9 +1,12 @@
 const { STATUSES, PRIORITIES } = require('../taskModel');
 
-function listTasks(tasks, { status, priority, page, limit, sort, order }) {
+function listTasks(tasks, { status, priority, assignee, keyword, page, limit, sort, order }) {
+  const normalizedKeyword = keyword?.toLowerCase();
   const filtered = tasks.filter(task =>
     (!status || task.status === status)
-    && (!priority || task.priority === priority));
+    && (!priority || task.priority === priority)
+    && (!assignee || task.assignee.toLowerCase() === assignee.toLowerCase())
+    && (!normalizedKeyword || [task.title, task.description].some(value => value.toLowerCase().includes(normalizedKeyword))));
 
   const compare = (left, right) => {
     if (sort === 'priority') return PRIORITIES.indexOf(left.priority) - PRIORITIES.indexOf(right.priority);
