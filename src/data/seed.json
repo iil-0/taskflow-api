@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Set up project repository",
+    "description": "Initialize the Node.js project, configure scripts and add the base folder structure",
+    "status": "completed",
+    "priority": "high",
+    "assignee": "Musa",
+    "createdAt": "2026-09-21T08:00:00.000Z",
+    "updatedAt": "2026-09-21T15:30:00.000Z"
+  },
+  {
+    "id": 2,
+    "title": "Build task CRUD endpoints",
+    "description": "Implement create, list, detail, update and delete endpoints for tasks",
+    "status": "completed",
+    "priority": "high",
+    "assignee": "Musa",
+    "createdAt": "2026-09-22T09:15:00.000Z",
+    "updatedAt": "2026-09-24T13:40:00.000Z"
+  },
+  {
+    "id": 3,
+    "title": "Write integration tests",
+    "description": "Cover validation, persistence and reporting with node:test",
+    "status": "in-progress",
+    "priority": "medium",
+    "assignee": "Ayse",
+    "createdAt": "2026-09-23T10:00:00.000Z",
+    "updatedAt": "2026-09-26T12:20:00.000Z"
+  },
+  {
+    "id": 4,
+    "title": "Prepare Postman collection",
+    "description": "Export example requests for every endpoint and document the variables",
+    "status": "pending",
+    "priority": "medium",
+    "assignee": "Ayse",
+    "createdAt": "2026-09-24T11:30:00.000Z",
+    "updatedAt": "2026-09-24T11:30:00.000Z"
+  },
+  {
+    "id": 5,
+    "title": "Review backend error handling",
+    "description": "Make sure every failure path returns a consistent JSON error response",
+    "status": "pending",
+    "priority": "high",
+    "assignee": "Emre",
+    "createdAt": "2026-09-25T07:45:00.000Z",
+    "updatedAt": "2026-09-25T07:45:00.000Z"
+  },
+  {
+    "id": 6,
+    "title": "Update project documentation",
+    "description": "Document setup steps, environment variables and API examples in the README",
+    "status": "pending",
+    "priority": "low",
+    "assignee": "Zeynep",
+    "createdAt": "2026-09-26T14:10:00.000Z",
+    "updatedAt": "2026-09-26T14:10:00.000Z"
+  }
+]
